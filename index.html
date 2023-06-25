@@ -22,19 +22,19 @@
             text-align: center;
             text-transform: uppercase;
             font-family: 'Lato', sans-serif;
-            font-size: .7em;
-            letter-spacing: 5px;
+            font-size: 0.7rem;
+            letter-spacing: 0.3125rem;
             display: flex;
-            gap: 8px;
+            gap: 0.5rem;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        #timer > div {
-            padding: 20px;
-            width: 100px;
-            border-radius: 5px;
+        #timer>div {
+            padding: 1.25rem;
+            width: 6.25rem;
+            border-radius: 0.3125rem;
         }
 
         .days {
@@ -57,7 +57,7 @@
         .numbers {
             font-family: 'Montserrat', sans-serif;
             color: #183059;
-            font-size: 4em;
+            font-size: 2.8rem;
             text-align: center;
         }
 
@@ -70,18 +70,18 @@
         }
 
         #create-timer input {
-            font-size: 20px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            padding: 16px 20px;
-            margin-right: 10px;
+            font-size: 1.25rem;
+            border-radius: 0.5rem;
+            border: 0.0625rem solid #ccc;
+            padding: 1rem 1.25rem;
+            margin-right: 0.625rem;
         }
 
         #create-timer button {
-            font-size: 20px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            padding: 16px 20px;
+            font-size: 1.25rem;
+            border-radius: 0.5rem;
+            border: 0.0625rem solid #ccc;
+            padding: 1rem 1.25rem;
             background-color: rgb(3, 168, 3);
             color: white;
             transition: background-color 0.2s ease-in-out;
@@ -89,7 +89,7 @@
 
         #create-timer button:hover {
             cursor: pointer;
-            background-color: rgb(3, 168, 3, 0.8);
+            background-color: rgba(3, 168, 3, 0.8);
         }
     </style>
 </head>
@@ -97,7 +97,7 @@
 <body>
     <div id="timer">
         <div class="days">
-            <div id="days" class="numbers "> </div>days
+            <div id="days" class="numbers"> </div>days
         </div>
         <div class="hours">
             <div id="hours" class="numbers"> </div>hours
@@ -113,38 +113,39 @@
         <input type="datetime-local" id="date" name="date" onkeypress="(event.keyCode == 13) && createTimer()" />
         <button onclick="createTimer()">Create</button>
     </div>
-</body>
-<script>
-    function createTimer() {
-        const dateInputElement = document.getElementById('date')
-        const date = dateInputElement.value
-        window.location.href = `?date=${date}`
-    }
+    <script>
+        function createTimer() {
+            const dateInputElement = document.getElementById('date')
+            const date = dateInputElement.value
+            window.location.href = `?date=${date}`
+        }
 
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-    const dateParam = urlParams.get('date')
-    if (dateParam) {
-        const createTimerElement = document.getElementById('create-timer')
-        createTimerElement.style.display = 'none'
-        const date = new Date(dateParam)
-        console.log(date)
-        let timer = setInterval(function () {
-            const today = new Date().getTime()
-            const diff = date - today
-            let days = Math.floor(diff / (1000 * 60 * 60 * 24))
-            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-            let seconds = Math.floor((diff % (1000 * 60)) / 1000)
-            document.getElementById("days").innerHTML = days
-            document.getElementById("hours").innerHTML = hours
-            document.getElementById("minutes").innerHTML = minutes
-            document.getElementById("seconds").innerHTML = seconds
-        }, 1)
-    } else {
-        const timerElement = document.getElementById('timer')
-        timerElement.style.display = 'none'
-    }
-</script>
+        const queryString = window.location.search
+        const urlParams = new URLSearchParams(queryString)
+        const dateParam = urlParams.get('date')
+        if (dateParam) {
+            const createTimerElement = document.getElementById('create-timer')
+            createTimerElement.style.display = 'none'
+            const date = new Date(dateParam)
+            console.log(date)
+            let timer = setInterval(function () {
+                const today = new Date().getTime()
+                const diff = date - today
+                let days = Math.floor(diff / (1000 * 60 * 60 * 24))
+                let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+                let seconds = Math.floor((diff % (1000 * 60)) / 1000)
+                document.getElementById("days").innerHTML = days
+                document.getElementById("hours").innerHTML = hours
+                document.getElementById("minutes").innerHTML = minutes
+                document.getElementById("seconds").innerHTML = seconds
+            }, 1)
+        } else {
+            const timerElement = document.getElementById('timer')
+            timerElement.style.display = 'none'
+        }
+    </script>
+
+</body>
 
 </html>
