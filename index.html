@@ -120,6 +120,18 @@
             window.location.href = `?date=${date}`
         }
 
+
+        function adjustFontSizeRoot() {
+            const width = window.innerWidth
+            const height = window.innerHeight
+            const min = Math.min(width, height)
+            const size = min / 20
+            document.documentElement.style.fontSize = `calc(${size}px)`
+        }
+
+        adjustFontSizeRoot()
+        window.addEventListener('resize', adjustFontSizeRoot)
+
         const queryString = window.location.search
         const urlParams = new URLSearchParams(queryString)
         const dateParam = urlParams.get('date')
